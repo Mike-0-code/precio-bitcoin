@@ -47,10 +47,6 @@ Para ejecutar localmente:
 1. Clona el repositorio: `git clone https://github.com/Mike-0-code/bitcoin-price.git`
 2. Abre `index.html` en tu navegador
 
-## 📄 Licencia
-
-Este proyecto es de código abierto y está disponible bajo la [MIT License](LICENSE).
-
 ## 👨‍💻 Autor
 
 Creado por [Mike-0-code](https://github.com/Mike-0-code)
