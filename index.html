@@ -151,7 +151,11 @@
                     minute: '2-digit',
                     second: '2-digit'
                 });
-                const fechaCapitalizada = fechaEspañol.replace(/\b\w/g, l => l.toUpperCase());
+                const primerEspacio = fechaEspañol.indexOf(' ');
+                const diaCapitalizado = fechaEspañol.charAt(0).toUpperCase() + fechaEspañol.slice(1, primerEspacio);
+                const restoFecha = fechaEspañol.slice(primerEspacio);
+                const fechaCapitalizada = diaCapitalizado + restoFecha;
+
                 document.getElementById('updated').textContent = `Actualizado: ${fechaCapitalizada} UTC`;
                 
             } catch (error) {
@@ -185,6 +189,7 @@
 </body>
 
 </html>
+
 
 
 
