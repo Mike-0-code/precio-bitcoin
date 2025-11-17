@@ -28,32 +28,101 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f7931a'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='white'>₿</text></svg>">
 <style>
-    .page-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-    font-size: 2em;
-    margin-bottom: 8px;
-}
-
-.page-header .subtitle {
-    opacity: 0.8;
-    font-size: 1.1em;
-}
-
-.container {
-    /* Más compacto, solo para precio y variación */
-    min-height: 300px;
-    padding: 40px;
-}
-
-.page-footer {
-    text-align: center;
-    margin-top: 30px;
-    opacity: 0.7;
-}
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f7931a, #8b4513);
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 40px 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        max-width: 600px;
+        width: 90%;
+        /* NUEVO: Distribución espacial */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 450px;
+    }
+    
+    /* Zona SUPERIOR */
+    .header {
+        flex: 0 0 auto;
+        margin-bottom: 30px;
+    }
+    
+    /* Zona CENTRAL (HÉROE) */
+    .price-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    
+    /* Zona INFERIOR */
+    .footer {
+        flex: 0 0 auto;
+        margin-top: 30px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+    .subtitle {
+        font-size: 1em;
+        opacity: 0.8;
+        margin-bottom: 0;
+    }
+    .price {
+        font-size: 5em;
+        font-weight: bold;
+        margin: 10px 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .change {
+        font-size: 2em;
+        margin: 15px 0;
+        font-weight: bold;
+    }
+    .updated {
+        font-size: 0.9em;
+        opacity: 0.7;
+        margin-top: 0;
+    }
+    .positive { color: #4CAF50; }
+    .negative { color: #f44336; }
+    
+    @media (max-width: 768px) {
+        .price { font-size: 3.5em; }
+        .change { font-size: 1.5em; }
+        h1 { font-size: 1.5em; }
+        .container { 
+            padding: 30px;
+            min-height: 400px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .price { font-size: 2.8em; }
+        .change { font-size: 1.2em; }
+        h1 { font-size: 1.3em; }
+        .container { 
+            padding: 20px;
+            min-height: 380px;
+        }
+    }
 </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0VD8KJRWRR"></script>
@@ -66,21 +135,23 @@
 </script>
 </head>
 <body>
-    <!-- TÍTULO FUERA del contenedor -->
-    <div class="page-header">
-        <h1>Precio Bitcoin en Tiempo Real</h1>
-        <p class="subtitle">Seguimiento en vivo de BTC/USD</p>
-    </div>
-    
-    <!-- CONTENEDOR SOLO con precio y variación -->
     <div class="container">
-        <div class="price" id="price">Cargando...</div>
-        <div class="change" id="change"></div>
-    </div>
-    
-    <!-- INFORMACIÓN SECUNDARIA FUERA -->
-    <div class="page-footer">
-        <div class="updated" id="updated"></div>
+        <!-- ZONA SUPERIOR -->
+        <div class="header">
+            <h1>Precio Bitcoin en Tiempo Real</h1>
+            <p class="subtitle">Seguimiento en vivo de BTC/USD</p>
+        </div>
+        
+        <!-- ZONA CENTRAL (HÉROE) -->
+        <div class="price-section">
+            <div class="price" id="price">Cargando...</div>
+            <div class="change" id="change"></div>
+        </div>
+        
+        <!-- ZONA INFERIOR -->
+        <div class="footer">
+            <div class="updated" id="updated"></div>
+        </div>
     </div>
 
     <script>
@@ -150,4 +221,3 @@
 </body>
 
 </html>
-
