@@ -1,4 +1,4 @@
-# Bitcoin Price Tracker
+# Rastreador de Precio Bitcoin
 
 Una página web minimalista que muestra el precio del Bitcoin en tiempo real con actualizaciones automáticas cada 30 segundos.
 
@@ -13,7 +13,7 @@ Una página web minimalista que muestra el precio del Bitcoin en tiempo real con
 
 ## 🌐 Demo en Vivo
 
-[Visitar sitio web](https://mike-0-code.github.io/bitcoin-price/)
+[Visitar sitio web](https://mike-0-code.github.io/precio-bitcoin/)
 
 *🔒 Incluye política de privacidad y cumplimiento GDPR*
 
@@ -44,7 +44,7 @@ Este proyecto demuestra cómo crear un indicador financiero en tiempo real usand
 ## 🔧 Desarrollo
 
 Para ejecutar localmente:
-1. Clona el repositorio: `git clone https://github.com/Mike-0-code/bitcoin-price.git`
+1. Clona el repositorio: `git clone https://github.com/Mike-0-code/precio-bitcoin.git`
 2. Abre `index.html` en tu navegador
 
 ## 👨‍💻 Autor
