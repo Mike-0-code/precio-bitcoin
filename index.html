@@ -44,61 +44,82 @@
         font-family: Arial, sans-serif;
         background: linear-gradient(135deg, #f7931a, #8b4513);
         color: white;
-        text-align: center;
-        padding: 40px 20px; /* ← MÁS AIRE alrededor */
+        padding: 0;
         margin: 0;
         display: flex;
-        flex-direction: column;
-        justify-content: center; /* ← Centrado vertical SUAVE */
-        align-items: center;
+        flex-direction: column; /* ← Permite header fijo arriba */
         min-height: 100vh;
         min-height: -webkit-fill-available;
         width: 100%;
     }
     
-    .container {
-        background: rgba(0, 0, 0, 0.7);
-        padding: 50px 40px; /* ← MÁS ESPACIO interno */
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        max-width: 500px; /* ← Un poco más ancho */
-        width: 90%;
+    /* NUEVA BARRA SUPERIOR */
+    .header-bar {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px 20px;
         text-align: center;
-        margin: 0 auto;
+        width: 100%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 10;
     }
     
-    h1 {
-        font-size: 2em; /* ← Un poco más grande */
-        margin-bottom: 10px;
+    .header-bar h1 {
+        font-size: 1.4em;
+        margin: 0;
+        font-weight: 600;
     }
-    .subtitle {
-        font-size: 1.1em;
+    
+    .header-subtitle {
+        font-size: 0.9em;
         opacity: 0.8;
-        margin-bottom: 40px; /* ← MÁS ESPACIO debajo del título */
+        margin-top: 5px;
     }
+    
+    /* CONTENIDO PRINCIPAL (ocupa el espacio restante) */
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+    }
+    
     .price {
-        font-size: 4.5em; /* ← Balanceado para ambos */
+        font-size: 4.5em;
         font-weight: bold;
-        margin: 25px 0; /* ← MÁS ESPACIO alrededor del precio */
+        margin: 25px 0;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         line-height: 1.1;
     }
     .change {
         font-size: 1.8em;
-        margin: 30px 0; /* ← MÁS ESPACIO alrededor de la variación */
+        margin: 30px 0;
         font-weight: bold;
     }
     .updated {
         font-size: 0.9em;
         opacity: 0.7;
-        margin-top: 40px; /* ← MÁS ESPACIO arriba de la fecha */
+        margin-top: 40px;
     }
     .positive { color: #4CAF50; }
     .negative { color: #f44336; }
     
     @media (max-width: 768px) {
-        body {
-            padding: 30px 15px; /* ← Buen balance en tabletas */
+        .main-content {
+            padding: 15px;
         }
         .container { 
             padding: 40px 30px;
@@ -106,13 +127,12 @@
         }
         .price { font-size: 3.8em; }
         .change { font-size: 1.6em; }
-        h1 { font-size: 1.8em; }
+        .header-bar h1 { font-size: 1.3em; }
     }
     
     @media (max-width: 480px) {
-        body {
-            padding: 20px 10px; /* ← Aún con buen aire en móviles */
-            justify-content: center;
+        .main-content {
+            padding: 10px;
         }
         .container { 
             padding: 35px 25px;
@@ -127,8 +147,11 @@
             font-size: 1.4em;
             margin: 25px 0;
         }
-        h1 { font-size: 1.6em; }
-        .subtitle { margin-bottom: 30px; }
+        .header-bar {
+            padding: 12px 15px;
+        }
+        .header-bar h1 { font-size: 1.2em; }
+        .header-subtitle { font-size: 0.8em; }
         .updated { margin-top: 30px; }
     }
 
@@ -149,25 +172,26 @@
 </script>
 </head>
 <body>
-    <div class="container">
-        <!-- ZONA SUPERIOR -->
-        <div class="header">
-            <h1>Precio Bitcoin en Tiempo Real</h1>
-            <p class="subtitle">Seguimiento en vivo de BTC/USD</p>
-        </div>
-        
-        <!-- ZONA CENTRAL (HÉROE) -->
-        <div class="price-section">
+    <!-- NUEVA BARRA SUPERIOR -->
+    <div class="header-bar">
+        <h1>Precio Bitcoin en Tiempo Real</h1>
+        <div class="header-subtitle">Seguimiento en vivo de BTC/USD</div>
+    </div>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+        <div class="container">
             <div class="price" id="price">Cargando...</div>
             <div class="change" id="change"></div>
+            <div class="updated" id="updated"></div>
         </div>
+    </div>
         
         <!-- ZONA INFERIOR -->
         <div class="footer">
             <div class="updated" id="updated"></div>
         </div>
     </div>
-
     <script>
         async function updateBitcoinPrice() {
             try {
@@ -239,6 +263,7 @@
 </script>
 </body>
 </html>
+
 
 
 
