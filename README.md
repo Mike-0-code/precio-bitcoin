@@ -1,11 +1,11 @@
 # Precio Bitcoin en Tiempo Real
 
-Una página web minimalista que muestra el precio del Bitcoin en tiempo real con actualizaciones automáticas cada 30 segundos.
+Una página web minimalista que muestra el precio del Bitcoin en tiempo real con actualizaciones automáticas cada minuto.
 
 ## Características
 
 - **Precio en tiempo real** del Bitcoin (BTC/USD)
-- **Actualizaciones automáticas** cada 30 segundos  
+- **Actualizaciones automáticas** cada minuto  
 - **Cambio porcentual** en 24 horas
 - **Diseño responsive** que funciona en móviles y desktop
 - **Interfaz minimalista** y fácil de usar
@@ -27,7 +27,7 @@ Una página web minimalista que muestra el precio del Bitcoin en tiempo real con
 
 ## Especificaciones Técnicas
 
-- **Actualización:** Cada 30 segundos
+- **Actualización:** Cada minuto
 - **Precisión:** Hasta 8 decimales  
 - **Zona horaria:** UTC (universal)
 - **Compatibilidad:** Todos los navegadores modernos
