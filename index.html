@@ -29,13 +29,11 @@
         padding: 0;
         box-sizing: border-box;
     }
-    
     html, body {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
-    
     body {
         font-family: Arial, sans-serif;
         background: #111111;
@@ -48,7 +46,6 @@
         min-height: -webkit-fill-available;
         width: 100%;
     }
-    
     .header-bar {
         background: #0a0a0a;
         padding: 15px 20px;
@@ -56,14 +53,12 @@
         width: 100%;
         border-bottom: 1px solid #222222;
     }
-    
     .header-bar h1 {
         font-size: 1.4em;
         margin: 0;
         font-weight: 600;
         color: #f7931a;
     }
-    
     .header-subtitle {
         font-size: 0.9em;
         opacity: 0.9;
@@ -71,7 +66,6 @@
         color: #dddddd;
         font-weight: 500;
     }
-    
     .main-content {
         flex: 1;
         display: flex;
@@ -82,7 +76,6 @@
         width: 100%;
         padding-bottom: 60px;
     }
-    
     .container {
         background: #0a0a0a;
         padding: 50px 40px;
@@ -92,7 +85,6 @@
         text-align: center;
         border: 1px solid #222222;
     }
-    
     .price {
         font-size: 4.5em;
         font-weight: 300;
@@ -101,19 +93,24 @@
         color: #ffffff;
         letter-spacing: -2px;
     }
-    
     .change {
         font-size: 1.8em;
         margin: 30px 0;
         font-weight: 600;
     }
-    
     .updated {
         font-size: 0.9em;
         opacity: 0.9;
         margin-top: 40px;
         color: #cccccc;
         font-weight: 500;
+    }
+    .legal-disclaimer {
+        font-size: 0.65em;
+        opacity: 0.5;
+        margin-top: 3px;
+        color: #666666;
+        font-style: italic;
     }
     .footer-bar {
         background: #0a0a0a;
@@ -126,7 +123,6 @@
         left: 0;
         z-index: 1001;
     }
-
     .footer-bar .updated {
         font-size: 0.85em;
         opacity: 0.9;
@@ -134,11 +130,9 @@
         font-weight: 500;
         margin: 0;
     }   
-    
     #cookie-notice {
         bottom: 50px !important;
     }  
-
     .data-source {
         font-size: 0.7em;
         opacity: 0.6;
@@ -146,26 +140,17 @@
         color: #888888;
         line-height: 1.2;
     }
-
     .data-source a {
         color: #f7931a;
         text-decoration: none;
         transition: opacity 0.2s;
     }
-
     .data-source a:hover {
         opacity: 0.8;
         text-decoration: underline;
     }
-    
-    .positive { 
-        color: #00d664;
-    }
-    
-    .negative { 
-        color: #ff4444;
-    }
-    
+    .positive { color: #00d664; }
+    .negative { color: #ff4444; }
     @media (max-width: 768px) {
         .main-content { 
             justify-content: flex-start;
@@ -215,6 +200,7 @@
     <div class="footer-bar">
         <div class="updated" id="updated"></div>
         <div class="data-source">Datos por: <a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a></div>
+        <div class="legal-disclaimer">No es una recomendación de inversión</div>
     </div>
     <script>
         async function updateBitcoinPrice() {
@@ -223,19 +209,15 @@
             try {
                 const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true&precision=8');
                 const data = await response.json();
-                
                 const price = data.bitcoin.usd;
                 const change = data.bitcoin.usd_24h_change;
-                
                 document.getElementById('price').textContent = `$${price.toLocaleString('en-US', { 
             minimumFractionDigits: 2, 
             maximumFractionDigits: 2 
         })}`;
-                
                 const changeElement = document.getElementById('change');
                 changeElement.textContent = `${change > 0 ? '↗' : '↘'} ${change.toFixed(2)}% (24h)`;
                 changeElement.className = `change ${change > 0 ? 'positive' : 'negative'}`;
-                
                 const ahora = new Date();
                 const fechaEspañol = ahora.toLocaleString('es-ES', { 
                     timeZone: 'UTC',
@@ -251,32 +233,26 @@
                 const diaCapitalizado = fechaEspañol.charAt(0).toUpperCase() + fechaEspañol.slice(1, primerEspacio);
                 const restoFecha = fechaEspañol.slice(primerEspacio);
                 const fechaCapitalizada = diaCapitalizado + restoFecha;
-
                 document.getElementById('updated').textContent = `Actualizado: ${fechaCapitalizada} UTC`;
-                
             } catch (error) {
                 console.error('Error:', error);
-    
                 document.getElementById('price').textContent = 'Actualizando...';
-                document.getElementById('price').classList.add('error-state'); // ← Aplicar estilo
-    
+                document.getElementById('price').classList.add('error-state'); 
                 document.getElementById('change').textContent = '⏳ API';
                 document.getElementById('change').className = 'change';
-    
                 setTimeout(updateBitcoinPrice, 10000);
             }
         }
-        // Actualizar inmediatamente y cada minuto
         updateBitcoinPrice();
         setInterval(updateBitcoinPrice, 60000);
     </script>
     <!-- Aviso de Cookies -->
-    <div id="cookie-notice" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 15px; text-align: center; z-index: 1000;">
-    <span>Usamos Google Analytics para entender el uso del sitio. Al continuar navegando, aceptas este seguimiento.</span>
-    <button onclick="acceptCookies()" style="margin-left: 15px; padding: 5px 15px; background: #f7931a; color: white; border: none; border-radius: 3px; cursor: pointer;">Aceptar</button>
-    <a href="privacidad.html" style="margin-left: 15px; color: #f7931a;">Más información</a>
-    </div>
-<script>
+        <div id="cookie-notice" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 15px; text-align: center; z-index: 1000;">
+        <span>Usamos Google Analytics para entender el uso del sitio. Al continuar navegando, aceptas este seguimiento.</span>
+        <button onclick="acceptCookies()" style="margin-left: 15px; padding: 5px 15px; background: #f7931a; color: white; border: none; border-radius: 3px; cursor: pointer;">Aceptar</button>
+        <a href="privacidad.html" style="margin-left: 15px; color: #f7931a;">Más información</a>
+        </div>
+    <script>
     // Mostrar aviso si no ha sido aceptado
     if (!localStorage.getItem('cookies-accepted')) {
         document.getElementById('cookie-notice').style.display = 'block';
@@ -288,16 +264,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
